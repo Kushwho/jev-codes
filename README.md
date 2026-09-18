@@ -24,6 +24,20 @@ jev-codes audit --staged
 jev audit --json
 ```
 
+## Agent adapters
+
+All adapters run the same `audit --json` loop (preferring a `jev-codes` binary
+on `PATH`, falling back to `npx`) and fix only high/medium findings at the
+reported `new_lines`:
+
+| Harness    | Entry point                          | Invoke       |
+| ---------- | ------------------------------------ | ------------ |
+| Claude Code| `claude-plugin/commands/jev-audit.md`| `/jev-audit` |
+| Cursor     | `.cursor/commands/jev-audit.md`      | `/jev-audit` |
+| Codex CLI  | `.codex/prompts/jev-audit.md`        | `/jev-audit` |
+| opencode   | `.opencode/commands/jev-audit.md`    | `/jev-audit` |
+| Antigravity| `.agents/skills/jev-audit/SKILL.md`  | `/jev-audit` |
+
 ## Data path disclosure
 
 `audit` sends per-hunk state to `https://api.typesafe.ai` for scoring:

@@ -1,13 +1,18 @@
 import { describe, expect, it } from "vitest";
 import fs from "node:fs";
 
-describe("plugin.prompt", () => {
-  const md = fs.readFileSync(
-    "claude-plugin/commands/jev-audit.md",
-    "utf8",
-  );
+const adapters = [
+  "claude-plugin/commands/jev-audit.md",
+  ".cursor/commands/jev-audit.md",
+  ".codex/prompts/jev-audit.md",
+  ".opencode/commands/jev-audit.md",
+  ".agents/skills/jev-audit/SKILL.md",
+];
 
-  it("jev-audit.md contains 5 steps + prohibitions + PATH-first + version check", () => {
+describe.each(adapters)("plugin.prompt %s", (file) => {
+  const md = fs.readFileSync(file, "utf8");
+
+  it("jev-audit prompt contains 5 steps + prohibitions + PATH-first + version check", () => {
     // 5 numbered steps
     for (const n of [1, 2, 3, 4, 5]) {
       expect(md).toMatch(new RegExp(`^${n}\\.`, "m"));

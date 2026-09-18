@@ -15,6 +15,11 @@
     "dist/**/*",
     "packs/*.yaml",
     "packs/*.json",
+    "claude-plugin/**/*",
+    ".cursor/commands/*.md",
+    ".codex/prompts/*.md",
+    ".opencode/commands/*.md",
+    ".agents/skills/jev-audit/*.md",
     "README.md"
   ],
   "scripts": {
