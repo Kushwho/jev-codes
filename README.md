@@ -27,7 +27,7 @@ With no arguments it onboards inline: asks for your TypeSafe key, validates it, 
 npx @kushwho/jev-codes init [--key <k>] [--no-plugin]
 ```
 
-`TYPESAFE_API_KEY` in env always beats the config file. No global install needed; pin with `npx @kushwho/jev-codes@0.1.2`.
+`TYPESAFE_API_KEY` in env always beats the config file. pin with `npx @kushwho/jev-codes@latest`.
 
 ## Usage
 
