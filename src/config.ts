@@ -47,10 +47,42 @@ export function saveConfig(obj: JevConfig): void {
 
 /** Env TYPESAFE_API_KEY always beats the config file. */
 export function getApiKey(): string | undefined {
-  if (process.env.TYPESAFE_API_KEY) return process.env.TYPESAFE_API_KEY;
+  if (process.env.TYPESAFE_API_KEY) {
+    const cleaned = cleanApiKey(process.env.TYPESAFE_API_KEY);
+    if (cleaned) return cleaned;
+  }
   const cfg = getConfig() as Record<string, unknown>;
   const v = cfg.apiKey ?? cfg.api_key ?? cfg.key;
-  return typeof v === "string" && v.length > 0 ? v : undefined;
+  if (typeof v === "string") {
+    const cleaned = cleanApiKey(v);
+    if (cleaned) return cleaned;
+  }
+  return undefined;
+}
+
+/**
+ * Sanitize a pasted API key: trims whitespace, drops a leading `NAME=`
+ * assignment prefix (people paste whole .env lines), and strips one layer
+ * of surrounding single/double quotes. Never logs the value.
+ */
+export function cleanApiKey(raw: unknown): string {
+  if (typeof raw !== "string") return "";
+  let k = raw.trim();
+  // Drop a leading SCREAMING_SNAKE assignment prefix (whole .env line pasted).
+  // Uppercase-only so key values containing `=` are never mangled, and only
+  // when a non-empty value follows the `=`.
+  const assignment = k.match(/^([A-Z_][A-Z0-9_]*)\s*=\s*(.*)$/s);
+  if (assignment && (assignment[2] ?? "").trim().length > 0) {
+    k = assignment[2].trim();
+  }
+  if (
+    k.length >= 2 &&
+    ((k.startsWith('"') && k.endsWith('"')) ||
+      (k.startsWith("'") && k.endsWith("'")))
+  ) {
+    k = k.slice(1, -1).trim();
+  }
+  return k;
 }
 
 /** Precedence: flag > env TYPESAFE_DEFAULT_MODEL > config file > jev-latest. */

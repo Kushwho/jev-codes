@@ -2,7 +2,7 @@ import { Command } from "commander";
 import { execFile } from "node:child_process";
 import { createInterface } from "node:readline/promises";
 import { promisify } from "node:util";
-import { getConfig, saveConfig } from "../config.js";
+import { cleanApiKey, getConfig, saveConfig } from "../config.js";
 import { createJevScorer } from "../scorer/jev.js";
 import { AuthError } from "../scorer/types.js";
 import type { Pack } from "../packs/schema.js";
@@ -52,13 +52,12 @@ export async function runInit(opts: {
   plugin?: boolean;
   key?: string;
 }): Promise<void> {
-  let key = typeof opts.key === "string" ? opts.key.trim() : "";
-    if (!key) {
-      key = (process.env.TYPESAFE_API_KEY ?? "").trim();
-    }
-    if (!key) {
-      key = (await prompt("Enter TypeSafe API key: ")).trim();
-    }
+  let key = cleanApiKey(
+    typeof opts.key === "string" && opts.key ? opts.key : process.env.TYPESAFE_API_KEY,
+  );
+  if (!key) {
+    key = cleanApiKey(await prompt("Enter TypeSafe API key: "));
+  }
     if (!key) {
       console.error("No API key provided. Pass --key <k> or set TYPESAFE_API_KEY.");
       process.exit(2);
@@ -80,7 +79,9 @@ export async function runInit(opts: {
       );
     } catch (err) {
       if (isAuthFailure(err)) {
-        console.error("Invalid API key (HTTP 401). Check TYPESAFE_API_KEY and try again.");
+        console.error(
+          "Invalid API key (HTTP 401). Paste the key value only — no variable name, no quotes.",
+        );
         process.exit(2);
       }
       console.error(`API validation failed: ${(err as Error)?.message ?? String(err)}`);
