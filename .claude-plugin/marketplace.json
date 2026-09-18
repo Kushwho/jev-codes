@@ -1,15 +1,15 @@
 {
   "name": "kushwho-marketplace",
-  "description": "Kushwho plugins for Claude Code",
   "owner": {
-    "name": "kushwho"
+    "name": "kushwho",
+    "url": "https://github.com/Kushwho"
   },
   "plugins": [
     {
       "name": "jev-codes",
-      "source": "./",
+      "source": "./claude-plugin",
       "description": "Audit diffs with Jev",
-      "version": "0.1.0"
+      "version": "0.1.1"
     }
   ]
 }
