@@ -43,7 +43,7 @@ More: `packs list|add|show` (fetch community packs), `update` (pull newer packs 
 
 ## Supported harnesses
 
-Every adapter runs the same `audit --json` loop — PATH binary first, `npx` fallback — and fixes only high/medium findings at the reported lines:
+Every adapter runs the same `audit --json` loop — PATH binary first, `npx` fallback — and fixes only high/medium findings at the reported lines. `init` offers to install for any combination: pick 1–5, `all`, or `none` (or pass `--harness claude,cursor` non-interactively, `--no-plugin` to skip).
 
 | Harness     | Entry point                         | Invoke       |
 | ----------- | ----------------------------------- | ------------ |
