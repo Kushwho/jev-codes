@@ -1,0 +1,6 @@
+{
+  "name": "jev-codes",
+  "version": "0.1.0",
+  "description": "Audit diffs with Jev",
+  "commands": "./commands"
+}

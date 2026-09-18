@@ -1,0 +1,41 @@
+{
+  "name": "@kushwho/jev-codes",
+  "version": "0.1.0",
+  "description": "Audit a git diff against editable standards packs using TypeSafe Jev",
+  "type": "module",
+  "license": "MIT",
+  "engines": {
+    "node": ">=20"
+  },
+  "bin": {
+    "jev-codes": "./dist/cli.js",
+    "jev": "./dist/cli.js"
+  },
+  "files": [
+    "dist/**/*",
+    "packs/*.yaml",
+    "packs/*.json",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "tsc -p .",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "prepublishOnly": "npm run build"
+  },
+  "dependencies": {
+    "@typesafe-ai/sdk": "^0.6.0",
+    "commander": "^14.0.0",
+    "parse-diff": "^0.12.0",
+    "p-limit": "^6.1.0",
+    "picomatch": "^4.0.2",
+    "simple-git": "^3.27.0",
+    "yaml": "^2.7.0",
+    "zod": "^3.25.76"
+  },
+  "devDependencies": {
+    "@types/node": "^20.19.0",
+    "typescript": "^5.9.2",
+    "vitest": "^3.2.4"
+  }
+}

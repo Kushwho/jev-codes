@@ -1,0 +1,7 @@
+node_modules/
+dist/
+*.log
+# local user config + cache (never commit keys)
+# ~/.jev-codes/ is outside the repo; nothing to ignore here by path,
+# but ensure .jev-codes/ local overrides stay untracked if present
+.jev-codes/

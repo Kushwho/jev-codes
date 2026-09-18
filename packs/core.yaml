@@ -1,0 +1,60 @@
+name: core
+version: 0.1.0
+description: General hygiene for agent-written diffs
+context_lines: 20
+
+questions:
+  leftover_debug:
+    type: noul
+    ask: "The added lines include a debugging statement (print, console.log, debugger, dump) that is not part of the feature"
+    threshold: 0.7
+    severity: high
+    fix: "Remove the debug statement."
+
+  duplicate_logic:
+    type: noul
+    ask: "The added lines re-implement logic that already exists in the surrounding context"
+    threshold: 0.7
+    severity: medium
+    fix: "Call the existing helper instead of re-implementing it."
+
+  swallowed_error:
+    type: noul
+    ask: "An error is caught and then ignored, logged only, or replaced with a silent default"
+    threshold: 0.75
+    severity: high
+    fix: "Re-throw, handle, or surface the error."
+
+  comment_noise:
+    type: noul
+    ask: "The added comments restate what the code plainly does instead of explaining why"
+    threshold: 0.7
+    severity: low
+    fix: "Delete comments that restate the code."
+
+  abstraction_level:
+    type: score
+    ask: "How much abstraction do the added lines introduce relative to what the change needs"
+    levels:
+      - "None beyond what the change needs"
+      - "One small helper or type that is used once"
+      - "A new layer, class, or config that nothing else uses yet"
+      - "A framework for a problem the change does not have"
+    threshold: 1.5
+    severity: medium
+    fix: "Inline the abstraction; keep only what this change uses."
+
+  change_kind:
+    type: choice
+    ask: "What kind of change is this hunk"
+    options:
+      feature: "Adds behavior"
+      fix: "Corrects behavior"
+      refactor: "Same behavior, different structure"
+      test: "Adds or changes tests"
+      chore: "Config, deps, formatting, docs"
+      other: "Does not fit the above"
+    report_only: true
+
+file_rules:
+  ignore: ["**/*.lock", "**/dist/**", "**/*.min.js", "**/*.snap"]

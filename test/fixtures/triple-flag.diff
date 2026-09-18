@@ -1,0 +1,19 @@
+diff --git a/src/app.js b/src/app.js
+index 1111111..2222222 100644
+--- a/src/app.js
++++ b/src/app.js
+@@ -10,6 +10,22 @@ function formatUser(user) {
+   return user.first + " " + user.last;
+ }
+ // existing context
++function formatUserDuplicate(user) {
++  return user.first + " " + user.last;
++}
++console.log("debug user", user);
++try {
++  saveUser(user);
++} catch (e) {}
++const total = computeTotal(items);
+ // more context
+ function saveUser(user) {
+   db.save(user);

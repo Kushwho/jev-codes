@@ -1,0 +1,16 @@
+diff --git a/src/util.js b/src/util.js
+index 3333333..4444444 100644
+--- a/src/util.js
++++ b/src/util.js
+@@ -5,7 +5,9 @@ function total(items) {
+   let sum = 0;
+   for (const it of items) {
+     sum += it.price;
+   }
+-  return sum;
++  // Apply tax because downstream totals expect gross amounts (why, not what).
++  const TAX_RATE = 0.2;
++  return sum * (1 + TAX_RATE);
+ }
+ // trailing context
+ function noop() {}

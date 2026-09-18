@@ -1,0 +1,13 @@
+diff --git a/src/old-name.js b/src/new-name.js
+similarity index 92%
+rename from src/old-name.js
+rename to src/new-name.js
+index 5555555..6666666 100644
+--- a/src/old-name.js
++++ b/src/new-name.js
+@@ -1,4 +1,5 @@
+ const x = 1;
+ const y = 2;
+ const z = 3;
++console.log("added after rename", x + y + z);
+ module.exports = { x, y, z };
