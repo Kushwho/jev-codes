@@ -1,5 +1,5 @@
 name: core
-version: 0.1.0
+version: 0.1.1
 description: General hygiene for agent-written diffs
 context_lines: 20
 

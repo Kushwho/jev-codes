@@ -1,9 +1,9 @@
 {
   "packs": {
     "core": {
-      "version": "0.1.0",
+      "version": "0.1.1",
       "url": "https://raw.githubusercontent.com/kushwho/jev-codes/main/packs/core.yaml",
-      "sha256": "088e4c264878c7a885231206e91528e3f2516df1739c8871f47084f47b97919f"
+      "sha256": "060f439b6375d3e1beb9e152eceefecfb4634fc49927f6e9cdfa4740b737fd43"
     }
   }
 }
