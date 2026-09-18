@@ -12,9 +12,9 @@ function hunkRef() {
 }
 
 describe("report.thresholds", () => {
-  it("noul 0.72/0.7 flags with confidence null (NOT uncertain)", () => {
+  it("noul 0.77/0.75 flags with confidence null (NOT uncertain)", () => {
     const pack = loadBundled();
-    for (const v of [0.72, 0.7]) {
+    for (const v of [0.77, 0.75]) {
       const r = applyThresholds(
         {
           hunk: hunkRef(),
@@ -29,12 +29,12 @@ describe("report.thresholds", () => {
     }
   });
 
-  it("noul 0.69 no flag", () => {
+  it("noul 0.74 no flag", () => {
     const pack = loadBundled();
     const r = applyThresholds(
       {
         hunk: hunkRef(),
-        answers: { leftover_debug: { type: "noul", value: 0.69 } as never },
+        answers: { leftover_debug: { type: "noul", value: 0.74 } as never },
       },
       pack,
     );

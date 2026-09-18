@@ -2,5 +2,9 @@
   "name": "jev-codes",
   "version": "0.1.0",
   "description": "Audit diffs with Jev",
+  "author": {
+    "name": "kushwho",
+    "url": "https://github.com/Kushwho"
+  },
   "commands": "./commands"
 }
