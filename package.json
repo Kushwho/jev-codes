@@ -1,6 +1,6 @@
 {
   "name": "@kushwho/jev-codes",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Audit a git diff against editable standards packs using TypeSafe Jev",
   "homepage": "https://github.com/Kushwho/jev-codes",
   "repository": {
