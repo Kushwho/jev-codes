@@ -1,0 +1,831 @@
+{
+  "requested_model": "jev-1.13.0",
+  "response_models": {
+    "jev-1.13.0": 17
+  },
+  "pack": "core@0.1.0",
+  "cost_usd": 0.000554652,
+  "ms": 8820,
+  "overall": {
+    "TP": 10,
+    "FP": 1,
+    "FN": 1,
+    "precision": 0.9090909090909091,
+    "recall": 0.9090909090909091
+  },
+  "high_gate": {
+    "TP": 6,
+    "FP": 1,
+    "precision": 0.8571428571428571
+  },
+  "label_accuracy": 0.8235294117647058,
+  "per_question": {
+    "leftover_debug": {
+      "tp": 3,
+      "fp": 1,
+      "fn": 0
+    },
+    "duplicate_logic": {
+      "tp": 2,
+      "fp": 0,
+      "fn": 1
+    },
+    "swallowed_error": {
+      "tp": 3,
+      "fp": 0,
+      "fn": 0
+    },
+    "comment_noise": {
+      "tp": 1,
+      "fp": 0,
+      "fn": 0
+    },
+    "abstraction_level": {
+      "tp": 1,
+      "fp": 0,
+      "fn": 0
+    }
+  },
+  "per_case": [
+    {
+      "id": "01-leftover-console-log",
+      "difficulty": "easy",
+      "hunks": 1,
+      "tp": 1,
+      "fp": 0,
+      "fn": 0,
+      "fps": [],
+      "fns": [],
+      "uncertain": [],
+      "labels": [
+        {
+          "file": "src/cart/total.ts",
+          "question": "change_kind",
+          "choice": "feature",
+          "got": "feature",
+          "match": true
+        }
+      ],
+      "scores": [
+        {
+          "file": "src/cart/total.ts",
+          "scores": {
+            "leftover_debug": {
+              "value": 0.98
+            },
+            "duplicate_logic": {
+              "value": 0.07
+            },
+            "swallowed_error": {
+              "value": 0.09
+            },
+            "comment_noise": {
+              "value": 0.22
+            },
+            "abstraction_level": {
+              "value": 0.43,
+              "conf": 0.57
+            },
+            "change_kind": {
+              "conf": 1,
+              "choice": "feature"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "02-leftover-print-python",
+      "difficulty": "easy",
+      "hunks": 1,
+      "tp": 1,
+      "fp": 0,
+      "fn": 0,
+      "fps": [],
+      "fns": [],
+      "uncertain": [],
+      "labels": [
+        {
+          "file": "app/services/invoice.py",
+          "question": "change_kind",
+          "choice": "feature",
+          "got": "feature",
+          "match": true
+        }
+      ],
+      "scores": [
+        {
+          "file": "app/services/invoice.py",
+          "scores": {
+            "leftover_debug": {
+              "value": 0.97
+            },
+            "duplicate_logic": {
+              "value": 0.11
+            },
+            "swallowed_error": {
+              "value": 0.12
+            },
+            "comment_noise": {
+              "value": 0.23
+            },
+            "abstraction_level": {
+              "value": 0.46,
+              "conf": 0.54
+            },
+            "change_kind": {
+              "conf": 0.97,
+              "choice": "feature"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "03-intentional-structured-log",
+      "difficulty": "medium",
+      "hunks": 1,
+      "tp": 0,
+      "fp": 0,
+      "fn": 0,
+      "fps": [],
+      "fns": [],
+      "uncertain": [],
+      "labels": [
+        {
+          "file": "src/orders/service.ts",
+          "question": "change_kind",
+          "choice": "feature",
+          "got": "feature",
+          "match": true
+        }
+      ],
+      "scores": [
+        {
+          "file": "src/orders/service.ts",
+          "scores": {
+            "leftover_debug": {
+              "value": 0.58
+            },
+            "duplicate_logic": {
+              "value": 0.05
+            },
+            "swallowed_error": {
+              "value": 0.06
+            },
+            "comment_noise": {
+              "value": 0.15
+            },
+            "abstraction_level": {
+              "value": 0,
+              "conf": 1
+            },
+            "change_kind": {
+              "conf": 0.93,
+              "choice": "feature"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "04-duplicate-format-currency",
+      "difficulty": "easy",
+      "hunks": 1,
+      "tp": 0,
+      "fp": 0,
+      "fn": 1,
+      "fps": [],
+      "fns": [
+        {
+          "file": "src/money/format.ts",
+          "question": "duplicate_logic"
+        }
+      ],
+      "uncertain": [],
+      "labels": [
+        {
+          "file": "src/money/format.ts",
+          "question": "change_kind",
+          "choice": "feature",
+          "got": "feature",
+          "match": true
+        }
+      ],
+      "scores": [
+        {
+          "file": "src/money/format.ts",
+          "scores": {
+            "leftover_debug": {
+              "value": 0.01
+            },
+            "duplicate_logic": {
+              "value": 0.47
+            },
+            "swallowed_error": {
+              "value": 0.03
+            },
+            "comment_noise": {
+              "value": 0.11
+            },
+            "abstraction_level": {
+              "value": 0.53,
+              "conf": 0.49
+            },
+            "change_kind": {
+              "conf": 1,
+              "choice": "feature"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "05-duplicate-email-regex",
+      "difficulty": "medium",
+      "hunks": 1,
+      "tp": 1,
+      "fp": 0,
+      "fn": 0,
+      "fps": [],
+      "fns": [],
+      "uncertain": [],
+      "labels": [
+        {
+          "file": "app/auth/signup.py",
+          "question": "change_kind",
+          "choice": "feature",
+          "got": "feature",
+          "match": true
+        }
+      ],
+      "scores": [
+        {
+          "file": "app/auth/signup.py",
+          "scores": {
+            "leftover_debug": {
+              "value": 0.01
+            },
+            "duplicate_logic": {
+              "value": 0.8
+            },
+            "swallowed_error": {
+              "value": 0.04
+            },
+            "comment_noise": {
+              "value": 0.11
+            },
+            "abstraction_level": {
+              "value": 0.34,
+              "conf": 0.66
+            },
+            "change_kind": {
+              "conf": 1,
+              "choice": "feature"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "06-uses-existing-helper",
+      "difficulty": "easy",
+      "hunks": 1,
+      "tp": 0,
+      "fp": 0,
+      "fn": 0,
+      "fps": [],
+      "fns": [],
+      "uncertain": [],
+      "labels": [
+        {
+          "file": "app/auth/signup.py",
+          "question": "change_kind",
+          "choice": "feature",
+          "got": "feature",
+          "match": true
+        }
+      ],
+      "scores": [
+        {
+          "file": "app/auth/signup.py",
+          "scores": {
+            "leftover_debug": {
+              "value": 0.01
+            },
+            "duplicate_logic": {
+              "value": 0.55
+            },
+            "swallowed_error": {
+              "value": 0.04
+            },
+            "comment_noise": {
+              "value": 0.09
+            },
+            "abstraction_level": {
+              "value": 0.09,
+              "conf": 0.91
+            },
+            "change_kind": {
+              "conf": 1,
+              "choice": "feature"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "07-empty-catch",
+      "difficulty": "easy",
+      "hunks": 1,
+      "tp": 1,
+      "fp": 0,
+      "fn": 0,
+      "fps": [],
+      "fns": [],
+      "uncertain": [],
+      "labels": [
+        {
+          "file": "src/webhooks/dispatch.ts",
+          "question": "change_kind",
+          "choice": "fix",
+          "got": "fix",
+          "match": true
+        }
+      ],
+      "scores": [
+        {
+          "file": "src/webhooks/dispatch.ts",
+          "scores": {
+            "leftover_debug": {
+              "value": 0.02
+            },
+            "duplicate_logic": {
+              "value": 0.04
+            },
+            "swallowed_error": {
+              "value": 0.97
+            },
+            "comment_noise": {
+              "value": 0.06
+            },
+            "abstraction_level": {
+              "value": 0.01,
+              "conf": 0.99
+            },
+            "change_kind": {
+              "conf": 0.81,
+              "choice": "fix"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "08-silent-default-go",
+      "difficulty": "medium",
+      "hunks": 1,
+      "tp": 1,
+      "fp": 1,
+      "fn": 0,
+      "fps": [
+        {
+          "file": "internal/config/load.go",
+          "question": "leftover_debug",
+          "severity": "high"
+        }
+      ],
+      "fns": [],
+      "uncertain": [],
+      "labels": [
+        {
+          "file": "internal/config/load.go",
+          "question": "change_kind",
+          "choice": "refactor",
+          "got": "fix",
+          "match": false
+        }
+      ],
+      "scores": [
+        {
+          "file": "internal/config/load.go",
+          "scores": {
+            "leftover_debug": {
+              "value": 0.7
+            },
+            "duplicate_logic": {
+              "value": 0.13
+            },
+            "swallowed_error": {
+              "value": 0.96
+            },
+            "comment_noise": {
+              "value": 0.11
+            },
+            "abstraction_level": {
+              "value": 0.02,
+              "conf": 0.98
+            },
+            "change_kind": {
+              "conf": 0.49,
+              "choice": "fix"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "09-rethrow-with-context",
+      "difficulty": "medium",
+      "hunks": 1,
+      "tp": 0,
+      "fp": 0,
+      "fn": 0,
+      "fps": [],
+      "fns": [],
+      "uncertain": [],
+      "labels": [
+        {
+          "file": "src/payments/charge.ts",
+          "question": "change_kind",
+          "choice": "refactor",
+          "got": "feature",
+          "match": false
+        }
+      ],
+      "scores": [
+        {
+          "file": "src/payments/charge.ts",
+          "scores": {
+            "leftover_debug": {
+              "value": 0.01
+            },
+            "duplicate_logic": {
+              "value": 0.05
+            },
+            "swallowed_error": {
+              "value": 0.04
+            },
+            "comment_noise": {
+              "value": 0.05
+            },
+            "abstraction_level": {
+              "value": 0.19,
+              "conf": 0.81
+            },
+            "change_kind": {
+              "conf": 0.41,
+              "choice": "feature"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "10-comment-noise",
+      "difficulty": "easy",
+      "hunks": 1,
+      "tp": 1,
+      "fp": 0,
+      "fn": 0,
+      "fps": [],
+      "fns": [],
+      "uncertain": [],
+      "labels": [
+        {
+          "file": "lib/retry.js",
+          "question": "change_kind",
+          "choice": "chore",
+          "got": "chore",
+          "match": true
+        }
+      ],
+      "scores": [
+        {
+          "file": "lib/retry.js",
+          "scores": {
+            "leftover_debug": {
+              "value": 0.02
+            },
+            "duplicate_logic": {
+              "value": 0.21
+            },
+            "swallowed_error": {
+              "value": 0.26
+            },
+            "comment_noise": {
+              "value": 0.83
+            },
+            "abstraction_level": {
+              "value": 0.1,
+              "conf": 0.9
+            },
+            "change_kind": {
+              "conf": 0.87,
+              "choice": "chore"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "11-why-comment",
+      "difficulty": "medium",
+      "hunks": 1,
+      "tp": 0,
+      "fp": 0,
+      "fn": 0,
+      "fps": [],
+      "fns": [],
+      "uncertain": [],
+      "labels": [
+        {
+          "file": "lib/stripeAmount.js",
+          "question": "change_kind",
+          "choice": "chore",
+          "got": "chore",
+          "match": true
+        }
+      ],
+      "scores": [
+        {
+          "file": "lib/stripeAmount.js",
+          "scores": {
+            "leftover_debug": {
+              "value": 0.01
+            },
+            "duplicate_logic": {
+              "value": 0.04
+            },
+            "swallowed_error": {
+              "value": 0.04
+            },
+            "comment_noise": {
+              "value": 0.13
+            },
+            "abstraction_level": {
+              "value": 0,
+              "conf": 1
+            },
+            "change_kind": {
+              "conf": 0.97,
+              "choice": "chore"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "12-over-abstraction",
+      "difficulty": "easy",
+      "hunks": 1,
+      "tp": 1,
+      "fp": 0,
+      "fn": 0,
+      "fps": [],
+      "fns": [],
+      "uncertain": [],
+      "labels": [
+        {
+          "file": "src/notify/sendWelcome.ts",
+          "question": "change_kind",
+          "choice": "refactor",
+          "got": "refactor",
+          "match": true
+        }
+      ],
+      "scores": [
+        {
+          "file": "src/notify/sendWelcome.ts",
+          "scores": {
+            "leftover_debug": {
+              "value": 0.02
+            },
+            "duplicate_logic": {
+              "value": 0.25
+            },
+            "swallowed_error": {
+              "value": 0.04
+            },
+            "comment_noise": {
+              "value": 0.07
+            },
+            "abstraction_level": {
+              "value": 2.83,
+              "conf": 0.83
+            },
+            "change_kind": {
+              "conf": 0.69,
+              "choice": "refactor"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "13-small-helper-used-once",
+      "difficulty": "hard",
+      "hunks": 1,
+      "tp": 0,
+      "fp": 0,
+      "fn": 0,
+      "fps": [],
+      "fns": [],
+      "uncertain": [],
+      "labels": [
+        {
+          "file": "src/ui/volume.ts",
+          "question": "change_kind",
+          "choice": "fix",
+          "got": "fix",
+          "match": true
+        }
+      ],
+      "scores": [
+        {
+          "file": "src/ui/volume.ts",
+          "scores": {
+            "leftover_debug": {
+              "value": 0.01
+            },
+            "duplicate_logic": {
+              "value": 0.13
+            },
+            "swallowed_error": {
+              "value": 0.08
+            },
+            "comment_noise": {
+              "value": 0.06
+            },
+            "abstraction_level": {
+              "value": 0.99,
+              "conf": 0.98
+            },
+            "change_kind": {
+              "conf": 0.97,
+              "choice": "fix"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "14-triple-flag",
+      "difficulty": "easy",
+      "hunks": 1,
+      "tp": 3,
+      "fp": 0,
+      "fn": 0,
+      "fps": [],
+      "fns": [],
+      "uncertain": [],
+      "labels": [
+        {
+          "file": "src/users/export.ts",
+          "question": "change_kind",
+          "choice": "feature",
+          "got": "feature",
+          "match": true
+        }
+      ],
+      "scores": [
+        {
+          "file": "src/users/export.ts",
+          "scores": {
+            "leftover_debug": {
+              "value": 0.95
+            },
+            "duplicate_logic": {
+              "value": 0.89
+            },
+            "swallowed_error": {
+              "value": 0.96
+            },
+            "comment_noise": {
+              "value": 0.11
+            },
+            "abstraction_level": {
+              "value": 0.2,
+              "conf": 0.8
+            },
+            "change_kind": {
+              "conf": 1,
+              "choice": "feature"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "15-clean-feature-with-test",
+      "difficulty": "easy",
+      "hunks": 3,
+      "tp": 0,
+      "fp": 0,
+      "fn": 0,
+      "fps": [],
+      "fns": [],
+      "uncertain": [],
+      "labels": [
+        {
+          "file": "src/dates/isBusinessDay.ts",
+          "question": "change_kind",
+          "choice": "feature",
+          "got": "feature",
+          "match": true
+        },
+        {
+          "file": "src/dates/isBusinessDay.test.ts",
+          "question": "change_kind",
+          "choice": "test",
+          "got": "test",
+          "match": true
+        },
+        {
+          "file": "src/dates/index.ts",
+          "question": "change_kind",
+          "choice": "chore",
+          "got": "feature",
+          "match": false
+        }
+      ],
+      "scores": [
+        {
+          "file": "src/dates/index.ts",
+          "scores": {
+            "leftover_debug": {
+              "value": 0.01
+            },
+            "duplicate_logic": {
+              "value": 0.03
+            },
+            "swallowed_error": {
+              "value": 0.04
+            },
+            "comment_noise": {
+              "value": 0.07
+            },
+            "abstraction_level": {
+              "value": 0.01,
+              "conf": 0.99
+            },
+            "change_kind": {
+              "conf": 0.9,
+              "choice": "feature"
+            }
+          }
+        },
+        {
+          "file": "src/dates/isBusinessDay.test.ts",
+          "scores": {
+            "leftover_debug": {
+              "value": 0.01
+            },
+            "duplicate_logic": {
+              "value": 0.04
+            },
+            "swallowed_error": {
+              "value": 0.04
+            },
+            "comment_noise": {
+              "value": 0.15
+            },
+            "abstraction_level": {
+              "value": 0.01,
+              "conf": 0.99
+            },
+            "change_kind": {
+              "conf": 1,
+              "choice": "test"
+            }
+          }
+        },
+        {
+          "file": "src/dates/isBusinessDay.ts",
+          "scores": {
+            "leftover_debug": {
+              "value": 0.01
+            },
+            "duplicate_logic": {
+              "value": 0.08
+            },
+            "swallowed_error": {
+              "value": 0.04
+            },
+            "comment_noise": {
+              "value": 0.08
+            },
+            "abstraction_level": {
+              "value": 0.48,
+              "conf": 0.52
+            },
+            "change_kind": {
+              "conf": 1,
+              "choice": "feature"
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

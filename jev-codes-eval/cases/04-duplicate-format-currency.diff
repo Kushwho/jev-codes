@@ -1,0 +1,18 @@
+diff --git a/src/money/format.ts b/src/money/format.ts
+index fab467d..54eef23 100644
+--- a/src/money/format.ts
++++ b/src/money/format.ts
+@@ -1,7 +1,13 @@
+ export function formatCurrency(amount: number, currency: string, locale = 'en-US'): string {
+   return new Intl.NumberFormat(locale, { style: 'currency', currency }).format(amount);
+ }
+ 
+ export function formatPercent(value: number, locale = 'en-US'): string {
+   return new Intl.NumberFormat(locale, { style: 'percent', maximumFractionDigits: 1 }).format(value);
+ }
++
++export function formatLineTotal(unitPrice: number, quantity: number, currency: string): string {
++  const total = unitPrice * quantity;
++  const formatter = new Intl.NumberFormat('en-US', { style: 'currency', currency });
++  return formatter.format(total);
++}

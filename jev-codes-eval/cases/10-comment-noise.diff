@@ -1,0 +1,28 @@
+diff --git a/lib/retry.js b/lib/retry.js
+index 3b227b4..480b25a 100644
+--- a/lib/retry.js
++++ b/lib/retry.js
+@@ -1,16 +1,23 @@
+ 'use strict';
+ 
++// retry function
+ async function retry(fn, attempts = 3, delayMs = 200) {
++  // store the last error
+   let lastError;
++  // loop over the attempts
+   for (let i = 0; i < attempts; i++) {
+     try {
++      // call the function and return its result
+       return await fn();
+     } catch (err) {
++      // save the error
+       lastError = err;
++      // wait before trying again
+       await new Promise((r) => setTimeout(r, delayMs * (i + 1)));
+     }
+   }
++  // throw the last error
+   throw lastError;
+ }
+ 
+ module.exports = { retry };

@@ -1,0 +1,54 @@
+diff --git a/src/notify/sendWelcome.ts b/src/notify/sendWelcome.ts
+index c42c62b..a28709a 100644
+--- a/src/notify/sendWelcome.ts
++++ b/src/notify/sendWelcome.ts
+@@ -1,5 +1,48 @@
+ import { sendEmail } from '../email';
+ 
++export interface NotificationChannel {
++  readonly kind: string;
++  send(recipient: string, message: NotificationMessage): Promise<void>;
++}
++
++export interface NotificationMessage {
++  subject: string;
++  body: string;
++}
++
++export abstract class BaseNotificationChannelFactory {
++  abstract create(): NotificationChannel;
++}
++
++export class EmailChannel implements NotificationChannel {
++  readonly kind = 'email';
++  async send(recipient: string, message: NotificationMessage): Promise<void> {
++    await sendEmail({ to: recipient, subject: message.subject, body: message.body });
++  }
++}
++
++export class EmailChannelFactory extends BaseNotificationChannelFactory {
++  create(): NotificationChannel {
++    return new EmailChannel();
++  }
++}
++
++export class NotificationChannelRegistry {
++  private readonly factories = new Map<string, BaseNotificationChannelFactory>();
++  register(kind: string, factory: BaseNotificationChannelFactory): void {
++    this.factories.set(kind, factory);
++  }
++  resolve(kind: string): NotificationChannel {
++    const factory = this.factories.get(kind);
++    if (!factory) throw new Error(`no channel for ${kind}`);
++    return factory.create();
++  }
++}
++
++const registry = new NotificationChannelRegistry();
++registry.register('email', new EmailChannelFactory());
++
+ export async function sendWelcome(to: string, name: string): Promise<void> {
+-  await sendEmail({ to, subject: 'Welcome!', body: `Hi ${name}, thanks for signing up.` });
++  const channel = registry.resolve('email');
++  await channel.send(to, { subject: 'Welcome!', body: `Hi ${name}, thanks for signing up.` });
+ }

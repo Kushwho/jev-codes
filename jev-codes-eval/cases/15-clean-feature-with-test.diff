@@ -1,0 +1,41 @@
+diff --git a/src/dates/index.ts b/src/dates/index.ts
+index 111166f..c921935 100644
+--- a/src/dates/index.ts
++++ b/src/dates/index.ts
+@@ -1 +1,2 @@
+ export { isWeekend } from './isWeekend';
++export { isBusinessDay } from './isBusinessDay';
+diff --git a/src/dates/isBusinessDay.test.ts b/src/dates/isBusinessDay.test.ts
+new file mode 100644
+index 0000000..e040d1d
+--- /dev/null
++++ b/src/dates/isBusinessDay.test.ts
+@@ -0,0 +1,16 @@
++import { describe, expect, it } from 'vitest';
++import { isBusinessDay } from './isBusinessDay';
++
++describe('isBusinessDay', () => {
++  it('is false on a Saturday', () => {
++    expect(isBusinessDay(new Date('2026-09-19T00:00:00Z'))).toBe(false);
++  });
++
++  it('is true on a Monday with no holidays', () => {
++    expect(isBusinessDay(new Date('2026-09-21T00:00:00Z'))).toBe(true);
++  });
++
++  it('is false on a listed holiday', () => {
++    expect(isBusinessDay(new Date('2026-10-02T00:00:00Z'), new Set(['2026-10-02']))).toBe(false);
++  });
++});
+diff --git a/src/dates/isBusinessDay.ts b/src/dates/isBusinessDay.ts
+new file mode 100644
+index 0000000..b314a49
+--- /dev/null
++++ b/src/dates/isBusinessDay.ts
+@@ -0,0 +1,6 @@
++import { isWeekend } from './isWeekend';
++
++export function isBusinessDay(date: Date, holidays: ReadonlySet<string> = new Set()): boolean {
++  if (isWeekend(date)) return false;
++  return !holidays.has(date.toISOString().slice(0, 10));
++}

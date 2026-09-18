@@ -1,0 +1,23 @@
+diff --git a/src/cart/total.ts b/src/cart/total.ts
+index a5847af..e45b0d3 100644
+--- a/src/cart/total.ts
++++ b/src/cart/total.ts
+@@ -1,14 +1,16 @@
+ export interface LineItem {
+   sku: string;
+   unitPrice: number;
+   quantity: number;
+ }
+ 
+ export function calculateSubtotal(items: LineItem[]): number {
+   return items.reduce((sum, item) => sum + item.unitPrice * item.quantity, 0);
+ }
+ 
+-export function calculateTotal(items: LineItem[], taxRate: number): number {
++export function calculateTotal(items: LineItem[], taxRate: number, discount = 0): number {
+   const subtotal = calculateSubtotal(items);
+-  return Math.round(subtotal * (1 + taxRate) * 100) / 100;
++  const discounted = Math.max(0, subtotal - discount);
++  console.log('DEBUG discounted', discounted, taxRate);
++  return Math.round(discounted * (1 + taxRate) * 100) / 100;
+ }

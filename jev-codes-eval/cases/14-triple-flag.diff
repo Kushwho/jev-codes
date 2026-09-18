@@ -1,0 +1,27 @@
+diff --git a/src/users/export.ts b/src/users/export.ts
+index 416da12..a5fa22a 100644
+--- a/src/users/export.ts
++++ b/src/users/export.ts
+@@ -1,11 +1,22 @@
+ import { writeFile } from 'node:fs/promises';
+ import type { User } from './types';
+ 
+ export function toCsvRow(fields: string[]): string {
+   return fields.map((f) => `"${String(f).replace(/"/g, '""')}"`).join(',');
+ }
+ 
+ export async function exportUsers(users: User[], path: string): Promise<void> {
+   const rows = users.map((u) => toCsvRow([u.id, u.email, u.createdAt.toISOString()]));
+   await writeFile(path, rows.join('\n'), 'utf8');
+ }
++
++export async function exportAdmins(users: User[], path: string): Promise<void> {
++  const admins = users.filter((u) => u.role === 'admin');
++  console.log('admins', admins.length);
++  const rows = admins.map((u) =>
++    [u.id, u.email, u.createdAt.toISOString()].map((f) => `"${String(f).replace(/"/g, '""')}"`).join(','),
++  );
++  try {
++    await writeFile(path, rows.join('\n'), 'utf8');
++  } catch (err) {}
++}

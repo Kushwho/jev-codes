@@ -1,0 +1,23 @@
+diff --git a/app/services/invoice.py b/app/services/invoice.py
+index 956a5dd..2307fdd 100644
+--- a/app/services/invoice.py
++++ b/app/services/invoice.py
+@@ -1,14 +1,16 @@
+ from dataclasses import dataclass
+ from decimal import Decimal
+ 
+ 
+ @dataclass
+ class Invoice:
+     number: str
+     amount: Decimal
+     currency: str
++    vat_rate: Decimal = Decimal("0")
+ 
+ 
+-def build_invoice(order: dict) -> Invoice:
++def build_invoice(order: dict, vat_rate: Decimal = Decimal("0")) -> Invoice:
+     amount = Decimal(str(order["amount"]))
+-    return Invoice(number=order["id"], amount=amount, currency=order["currency"])
++    print(f"here: {order} vat={vat_rate}")
++    return Invoice(number=order["id"], amount=amount, currency=order["currency"], vat_rate=vat_rate)

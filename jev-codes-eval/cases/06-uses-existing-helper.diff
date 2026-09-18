@@ -1,0 +1,27 @@
+diff --git a/app/auth/signup.py b/app/auth/signup.py
+index ac6440e..122743a 100644
+--- a/app/auth/signup.py
++++ b/app/auth/signup.py
+@@ -1,16 +1,22 @@
+ import re
+ 
+ from app.auth.models import User
+ from app.auth.repo import users
+ 
+ _EMAIL_RE = re.compile(r"^[^@\s]+@[^@\s]+\.[^@\s]+$")
+ 
+ 
+ def is_valid_email(value: str) -> bool:
+     return bool(_EMAIL_RE.match(value.strip().lower()))
+ 
+ 
+ def create_user(email: str, password_hash: str) -> User:
+     if not is_valid_email(email):
+         raise ValueError("invalid email")
+     return users.insert(User(email=email.strip().lower(), password_hash=password_hash))
++
++
++def invite_user(email: str, invited_by: str) -> User:
++    if not is_valid_email(email):
++        raise ValueError("invalid email")
++    return users.insert(User(email=email.strip().lower(), password_hash=None, invited_by=invited_by))

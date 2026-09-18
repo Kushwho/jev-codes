@@ -1,0 +1,24 @@
+diff --git a/src/payments/charge.ts b/src/payments/charge.ts
+index 876d640..25ecb84 100644
+--- a/src/payments/charge.ts
++++ b/src/payments/charge.ts
+@@ -1,13 +1,17 @@
+ import { stripe } from './client';
+ 
+ export class PaymentError extends Error {
+   constructor(message: string, options?: { cause?: unknown }) {
+     super(message, options);
+     this.name = 'PaymentError';
+   }
+ }
+ 
+ export async function charge(customerId: string, amountCents: number): Promise<string> {
+-  const intent = await stripe.paymentIntents.create({ customer: customerId, amount: amountCents, currency: 'usd' });
+-  return intent.id;
++  try {
++    const intent = await stripe.paymentIntents.create({ customer: customerId, amount: amountCents, currency: 'usd' });
++    return intent.id;
++  } catch (err) {
++    throw new PaymentError(`charge failed for customer ${customerId}`, { cause: err });
++  }
+ }

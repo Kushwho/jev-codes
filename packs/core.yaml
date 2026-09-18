@@ -7,7 +7,7 @@ questions:
   leftover_debug:
     type: noul
     ask: "The added lines include a debugging statement (print, console.log, debugger, dump) that is not part of the feature"
-    threshold: 0.7
+    threshold: 0.75
     severity: high
     fix: "Remove the debug statement."
 

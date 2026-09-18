@@ -1,0 +1,310 @@
+{
+  "version": 1,
+  "pack": "core",
+  "context_lines": 20,
+  "cases": [
+    {
+      "id": "01-leftover-console-log",
+      "diff": "cases/01-leftover-console-log.diff",
+      "language": "typescript",
+      "difficulty": "easy",
+      "hunks": 1,
+      "expected_flags": [
+        {
+          "file": "src/cart/total.ts",
+          "question": "leftover_debug"
+        }
+      ],
+      "expected_labels": [
+        {
+          "file": "src/cart/total.ts",
+          "question": "change_kind",
+          "choice": "feature"
+        }
+      ],
+      "notes": "A discount feature with a console.log left behind. Only leftover_debug should fire."
+    },
+    {
+      "id": "02-leftover-print-python",
+      "diff": "cases/02-leftover-print-python.diff",
+      "language": "python",
+      "difficulty": "easy",
+      "hunks": 1,
+      "expected_flags": [
+        {
+          "file": "app/services/invoice.py",
+          "question": "leftover_debug"
+        }
+      ],
+      "expected_labels": [
+        {
+          "file": "app/services/invoice.py",
+          "question": "change_kind",
+          "choice": "feature"
+        }
+      ],
+      "notes": "Debug print in Python. One hunk (dataclass field + function) in this diff; the print is the only issue."
+    },
+    {
+      "id": "03-intentional-structured-log",
+      "diff": "cases/03-intentional-structured-log.diff",
+      "language": "typescript",
+      "difficulty": "medium",
+      "hunks": 1,
+      "expected_flags": [],
+      "expected_labels": [
+        {
+          "file": "src/orders/service.ts",
+          "question": "change_kind",
+          "choice": "feature"
+        }
+      ],
+      "notes": "NEGATIVE. A structured audit log through the injected logger is intentional, not debugging. leftover_debug must not fire."
+    },
+    {
+      "id": "04-duplicate-format-currency",
+      "diff": "cases/04-duplicate-format-currency.diff",
+      "language": "typescript",
+      "difficulty": "easy",
+      "hunks": 1,
+      "expected_flags": [
+        {
+          "file": "src/money/format.ts",
+          "question": "duplicate_logic"
+        }
+      ],
+      "expected_labels": [
+        {
+          "file": "src/money/format.ts",
+          "question": "change_kind",
+          "choice": "feature"
+        }
+      ],
+      "notes": "formatCurrency exists two functions above; the new function rebuilds the same Intl formatter inline."
+    },
+    {
+      "id": "05-duplicate-email-regex",
+      "diff": "cases/05-duplicate-email-regex.diff",
+      "language": "python",
+      "difficulty": "medium",
+      "hunks": 1,
+      "expected_flags": [
+        {
+          "file": "app/auth/signup.py",
+          "question": "duplicate_logic"
+        }
+      ],
+      "expected_labels": [
+        {
+          "file": "app/auth/signup.py",
+          "question": "change_kind",
+          "choice": "feature"
+        }
+      ],
+      "notes": "is_valid_email is in context; the new invite path re-does email validation by hand with a weaker check."
+    },
+    {
+      "id": "06-uses-existing-helper",
+      "diff": "cases/06-uses-existing-helper.diff",
+      "language": "python",
+      "difficulty": "easy",
+      "hunks": 1,
+      "expected_flags": [],
+      "expected_labels": [
+        {
+          "file": "app/auth/signup.py",
+          "question": "change_kind",
+          "choice": "feature"
+        }
+      ],
+      "notes": "NEGATIVE twin of case 05. Same feature, but it calls the existing helper. Nothing should fire."
+    },
+    {
+      "id": "07-empty-catch",
+      "diff": "cases/07-empty-catch.diff",
+      "language": "typescript",
+      "difficulty": "easy",
+      "hunks": 1,
+      "expected_flags": [
+        {
+          "file": "src/webhooks/dispatch.ts",
+          "question": "swallowed_error"
+        }
+      ],
+      "expected_labels": [
+        {
+          "file": "src/webhooks/dispatch.ts",
+          "question": "change_kind",
+          "choice": "fix"
+        }
+      ],
+      "notes": "Empty catch. The clearest swallowed_error case."
+    },
+    {
+      "id": "08-silent-default-go",
+      "diff": "cases/08-silent-default-go.diff",
+      "language": "go",
+      "difficulty": "medium",
+      "hunks": 1,
+      "expected_flags": [
+        {
+          "file": "internal/config/load.go",
+          "question": "swallowed_error"
+        }
+      ],
+      "expected_labels": [
+        {
+          "file": "internal/config/load.go",
+          "question": "change_kind",
+          "choice": "refactor"
+        }
+      ],
+      "notes": "Errors are logged and replaced with a default; the caller can no longer tell config failed to load. Subtler than case 07. With 20 context lines the import and function changes land in one hunk."
+    },
+    {
+      "id": "09-rethrow-with-context",
+      "diff": "cases/09-rethrow-with-context.diff",
+      "language": "typescript",
+      "difficulty": "medium",
+      "hunks": 1,
+      "expected_flags": [],
+      "expected_labels": [
+        {
+          "file": "src/payments/charge.ts",
+          "question": "change_kind",
+          "choice": "refactor"
+        }
+      ],
+      "notes": "NEGATIVE. The catch wraps and rethrows with context. swallowed_error must not fire."
+    },
+    {
+      "id": "10-comment-noise",
+      "diff": "cases/10-comment-noise.diff",
+      "language": "javascript",
+      "difficulty": "easy",
+      "hunks": 1,
+      "expected_flags": [
+        {
+          "file": "lib/retry.js",
+          "question": "comment_noise"
+        }
+      ],
+      "expected_labels": [
+        {
+          "file": "lib/retry.js",
+          "question": "change_kind",
+          "choice": "chore"
+        }
+      ],
+      "notes": "Every comment restates the line under it. Only comment_noise should fire (low severity)."
+    },
+    {
+      "id": "11-why-comment",
+      "diff": "cases/11-why-comment.diff",
+      "language": "javascript",
+      "difficulty": "medium",
+      "hunks": 1,
+      "expected_flags": [],
+      "expected_labels": [
+        {
+          "file": "lib/stripeAmount.js",
+          "question": "change_kind",
+          "choice": "chore"
+        }
+      ],
+      "notes": "NEGATIVE twin of case 10. The comment explains why, not what. comment_noise must not fire."
+    },
+    {
+      "id": "12-over-abstraction",
+      "diff": "cases/12-over-abstraction.diff",
+      "language": "typescript",
+      "difficulty": "easy",
+      "hunks": 1,
+      "expected_flags": [
+        {
+          "file": "src/notify/sendWelcome.ts",
+          "question": "abstraction_level"
+        }
+      ],
+      "expected_labels": [
+        {
+          "file": "src/notify/sendWelcome.ts",
+          "question": "change_kind",
+          "choice": "refactor"
+        }
+      ],
+      "notes": "A factory, a registry and two interfaces to send one email. abstraction_level should score 2 or above."
+    },
+    {
+      "id": "13-small-helper-used-once",
+      "diff": "cases/13-small-helper-used-once.diff",
+      "language": "typescript",
+      "difficulty": "hard",
+      "hunks": 1,
+      "expected_flags": [],
+      "expected_labels": [
+        {
+          "file": "src/ui/volume.ts",
+          "question": "change_kind",
+          "choice": "fix"
+        }
+      ],
+      "notes": "BORDERLINE NEGATIVE. A three-line helper used once is level 1 on the abstraction scale, below the 1.5 threshold. If this flags, the threshold or the level wording needs tuning."
+    },
+    {
+      "id": "14-triple-flag",
+      "diff": "cases/14-triple-flag.diff",
+      "language": "typescript",
+      "difficulty": "easy",
+      "hunks": 1,
+      "expected_flags": [
+        {
+          "file": "src/users/export.ts",
+          "question": "leftover_debug"
+        },
+        {
+          "file": "src/users/export.ts",
+          "question": "duplicate_logic"
+        },
+        {
+          "file": "src/users/export.ts",
+          "question": "swallowed_error"
+        }
+      ],
+      "expected_labels": [
+        {
+          "file": "src/users/export.ts",
+          "question": "change_kind",
+          "choice": "feature"
+        }
+      ],
+      "notes": "Three problems in one hunk: a console.log, a hand-rolled copy of toCsvRow, and an empty catch. All three should fire; comment_noise and abstraction_level should not."
+    },
+    {
+      "id": "15-clean-feature-with-test",
+      "diff": "cases/15-clean-feature-with-test.diff",
+      "language": "typescript",
+      "difficulty": "easy",
+      "hunks": 3,
+      "expected_flags": [],
+      "expected_labels": [
+        {
+          "file": "src/dates/isBusinessDay.ts",
+          "question": "change_kind",
+          "choice": "feature"
+        },
+        {
+          "file": "src/dates/isBusinessDay.test.ts",
+          "question": "change_kind",
+          "choice": "test"
+        },
+        {
+          "file": "src/dates/index.ts",
+          "question": "change_kind",
+          "choice": "chore"
+        }
+      ],
+      "notes": "NEGATIVE. A normal feature: new function, export, tests. Three files, zero findings. Checks that new files (no context) do not produce false positives."
+    }
+  ]
+}

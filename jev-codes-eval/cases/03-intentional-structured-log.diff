@@ -1,0 +1,18 @@
+diff --git a/src/orders/service.ts b/src/orders/service.ts
+index 789b174..6a3fdad 100644
+--- a/src/orders/service.ts
++++ b/src/orders/service.ts
+@@ -1,12 +1,13 @@
+ import type { Logger } from '../logging';
+ import type { OrderRepo } from './repo';
+ 
+ export class OrderService {
+   constructor(private readonly repo: OrderRepo, private readonly log: Logger) {}
+ 
+   async cancel(orderId: string, reason: string): Promise<void> {
+     const order = await this.repo.get(orderId);
+     if (!order) throw new Error(`order ${orderId} not found`);
+     await this.repo.update(orderId, { status: 'cancelled', reason });
++    this.log.info('order.cancelled', { orderId, reason, previousStatus: order.status });
+   }
+ }

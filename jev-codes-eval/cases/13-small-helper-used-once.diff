@@ -1,0 +1,13 @@
+diff --git a/src/ui/volume.ts b/src/ui/volume.ts
+index 3d46862..58d2bb6 100644
+--- a/src/ui/volume.ts
++++ b/src/ui/volume.ts
+@@ -1,3 +1,7 @@
++function clamp(value: number, min: number, max: number): number {
++  return Math.min(max, Math.max(min, value));
++}
++
+ export function setVolume(element: HTMLMediaElement, value: number): void {
+-  element.volume = value;
++  element.volume = clamp(value, 0, 1);
+ }

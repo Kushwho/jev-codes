@@ -1,0 +1,19 @@
+diff --git a/src/webhooks/dispatch.ts b/src/webhooks/dispatch.ts
+index 6bca700..9eb0ba3 100644
+--- a/src/webhooks/dispatch.ts
++++ b/src/webhooks/dispatch.ts
+@@ -1,11 +1,13 @@
+ import { postJson } from '../http';
+ 
+ export interface WebhookEvent {
+   id: string;
+   type: string;
+   payload: unknown;
+ }
+ 
+ export async function dispatch(url: string, event: WebhookEvent): Promise<void> {
+-  await postJson(url, event);
++  try {
++    await postJson(url, event);
++  } catch (err) {}
+ }

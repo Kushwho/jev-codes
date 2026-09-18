@@ -1,0 +1,19 @@
+diff --git a/lib/stripeAmount.js b/lib/stripeAmount.js
+index 6ba2d1e..d57fbd3 100644
+--- a/lib/stripeAmount.js
++++ b/lib/stripeAmount.js
+@@ -1,12 +1,14 @@
+ 'use strict';
+ 
+ const ZERO_DECIMAL = new Set(['JPY', 'KRW', 'VND', 'CLP', 'ISK', 'UGX']);
+ 
+ function toStripeAmount(amount, currency) {
++  // Stripe expects the smallest currency unit. Zero-decimal currencies have no
++  // minor unit, so multiplying by 100 would overcharge by 100x (we shipped that bug once).
+   if (ZERO_DECIMAL.has(currency.toUpperCase())) {
+     return Math.round(amount);
+   }
+   return Math.round(amount * 100);
+ }
+ 
+ module.exports = { toStripeAmount };
