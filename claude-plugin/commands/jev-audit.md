@@ -10,8 +10,11 @@ Audit the working diff with `jev-codes` and fix only what it reports.
 
 ## Steps
 
-1. Run the audit via Bash and parse stdout as JSON even on exit code 1:
-   `command -v jev-codes >/dev/null 2>&1 && jev-codes audit --json <args> || npx -y @kushwho/jev-codes audit --json <args>`
+1. Run the audit and parse stdout as JSON even on exit code 1. Use the first available:
+   `jev-codes audit --json <args>` (binary on PATH), else `npx -y @kushwho/jev-codes audit --json <args>`,
+   else — inside the jev-codes repo itself — `node dist/cli.js audit --json <args>` (run `npm run build` first).
+   Check availability with your shell's native means in a separate step — never chain check-and-fallback
+   in one `&&` / `||` one-liner, it breaks on Windows PowerShell.
    Forward `$ARGUMENTS` as `<args>` (e.g. `--base <ref>`, `--pack <name>`). Capture stdout; stdout is the JSON report.
 2. If the findings list is empty, reply with one line stating no findings and stop. Do nothing else.
 3. Fix high/medium findings only, at the reported `new_lines` only. Stay hunk-only: edit just the flagged lines, no surrounding refactors.

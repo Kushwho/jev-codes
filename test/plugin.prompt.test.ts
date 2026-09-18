@@ -25,9 +25,12 @@ describe.each(adapters)("plugin.prompt %s", (file) => {
     expect(md).toContain("Never touch files");
     expect(md).toContain("Never argue");
 
-    // PATH-first: prefers installed binary, falls back to npx
-    expect(md).toContain("command -v jev-codes");
-    expect(md).toContain("|| npx");
+    // Portable invocation: PATH binary preferred, npx fallback, local dist fallback; no `command -v` one-liner
+    expect(md).toContain("jev-codes audit --json");
+    expect(md).toContain("npx");
+    expect(md).toContain("@kushwho/jev-codes");
+    expect(md).toContain("dist/cli.js");
+    expect(md).not.toContain("command -v");
 
     // version check: inspect report version, refuse on major > 1
     expect(md).toContain("## Version check");
