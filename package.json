@@ -16,8 +16,8 @@
     "node": ">=20"
   },
   "bin": {
-    "jev-codes": "./dist/cli.js",
-    "jev": "./dist/cli.js"
+    "jev-codes": "dist/cli.js",
+    "jev": "dist/cli.js"
   },
   "files": [
     "dist/**/*",
