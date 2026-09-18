@@ -8,6 +8,9 @@ Audit a git diff against editable standards packs, scored hunk-by-hunk with Type
 npx @kushwho/jev-codes init
 ```
 
+With no arguments, `npx @kushwho/jev-codes` onboards inline: it asks for
+your TypeSafe key and offers the plugin install.
+
 ## Usage
 
 ```sh

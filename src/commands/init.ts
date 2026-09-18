@@ -48,12 +48,11 @@ function minimalPingPack(): Pack {
   } as Pack;
 }
 
-export const initCmd = new Command("init")
-  .description("Store the TypeSafe API key and optionally install the Claude Code plugin")
-  .option("--no-plugin", "Skip the Claude Code plugin install step")
-  .option("--key <k>", "TypeSafe API key (overrides env and prompt)")
-  .action(async (opts: { plugin?: boolean; key?: string }) => {
-    let key = typeof opts.key === "string" ? opts.key.trim() : "";
+export async function runInit(opts: {
+  plugin?: boolean;
+  key?: string;
+}): Promise<void> {
+  let key = typeof opts.key === "string" ? opts.key.trim() : "";
     if (!key) {
       key = (process.env.TYPESAFE_API_KEY ?? "").trim();
     }
@@ -117,4 +116,12 @@ export const initCmd = new Command("init")
       console.log("  claude plugin marketplace add kushwho/jev-codes");
       console.log("  claude plugin install jev-codes@kushwho-marketplace");
     }
-  });
+  }
+
+export const initCmd = new Command("init")
+  .description("Store the TypeSafe API key and optionally install the Claude Code plugin")
+  .option("--no-plugin", "Skip the Claude Code plugin install step")
+  .option("--key <k>", "TypeSafe API key (overrides env and prompt)")
+  .action(
+    async (opts: { plugin?: boolean; key?: string }) => runInit(opts),
+  );

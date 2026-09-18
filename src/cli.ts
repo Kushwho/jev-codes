@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 import { Command } from "commander";
 import { createRequire } from "node:module";
-import { initCmd } from "./commands/init.js";
+import { initCmd, runInit } from "./commands/init.js";
 import * as auditMod from "./commands/audit.js";
 import { packsCmd } from "./commands/packs.js";
 import { updateCmd } from "./commands/update.js";
@@ -50,4 +50,11 @@ program.addCommand(auditCmd);
 program.addCommand(packsCmd);
 program.addCommand(updateCmd);
 
-await program.parseAsync(process.argv);
+// Bare invocation (`npx @kushwho/jev-codes` with no args) onboards inline:
+// prompt for the TypeSafe key and offer the plugin install, instead of
+// printing help. Any args/flags (including --help/-V) go to commander.
+if (process.argv.length <= 2) {
+  await runInit({});
+} else {
+  await program.parseAsync(process.argv);
+}
