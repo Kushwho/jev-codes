@@ -1,9 +1,7 @@
-# Jev — Crisp Documentation
+# Jev reference notes
 
 > Jev is TypeSafe's flagship model and the first **System One** model. Send `state` + typed `questions`, get structured answers your code can use directly. No text generation, no parsing.
 > Sources: `https://docs.typesafe.ai/introduction`, `https://docs.typesafe.ai/concepts/system-one`, `https://docs.typesafe.ai/primitives`, `https://docs.typesafe.ai/sdk/javascript`, `https://docs.typesafe.ai/api`, `https://docs.typesafe.ai/confidence`, `https://docs.typesafe.ai/patterns`
-
-Researched 2026-09-18 via 4 parallel subagents (core / primitives / SDK+API / patterns) against Context7 `/websites/typesafe_ai`, `/websites/typesafe_ai_sdk_javascript`, `/llmstxt/typesafe_ai_llms_txt`.
 
 ## 1. Mental model
 

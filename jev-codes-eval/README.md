@@ -51,9 +51,15 @@ precision = TP / (TP + FP)
 recall    = TP / (TP + FN)
 ```
 
-Report precision and recall per question and overall. `uncertain` items count as neither a finding nor a miss; list them separately. The PRD gate is 80% precision on `high` findings across the labeled set; do not publish below 70%.
+Report precision and recall per question and overall. `uncertain` items count as neither a finding nor a miss; list them separately. The gate is 80% precision on `high` findings across the labeled set.
 
 Expected totals: 11 expected flags across 15 cases; 6 cases are fully clean; every changed file has exactly one hunk.
+
+## Known limitations
+
+- Jev answer values wobble about ±0.02 run to run (case 08 `leftover_debug` scored 0.70, then 0.71). Keep at least 0.15 margin between a threshold and the nearest negative; never tune on an exact boundary value.
+- Near-twin inversion on `duplicate_logic`: negative case 06 (calls the existing helper) scored 0.55, above positive case 04 (re-implements it) at 0.45–0.47. No threshold separates them — threshold tuning cannot fix model-discrimination limits.
+- Go `log.Printf` error lines score as `leftover_debug` (~0.70). Intentional-but-misguided logging is the main false-positive source for that question; the 0.75 threshold keeps true positives (≥0.95) and the structured-log negative (0.58) at safe margins.
 
 ## Adding cases
 

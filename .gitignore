@@ -1,11 +1,7 @@
 node_modules/
 dist/
 *.log
-# secrets — never commit keys (tool reads of .env* are also blocked)
 .env
 .env.*
 *.env
-# local user config + cache (never commit keys)
-# ~/.jev-codes/ is outside the repo; nothing to ignore here by path,
-# but ensure .jev-codes/ local overrides stay untracked if present
 .jev-codes/

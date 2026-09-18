@@ -1,10 +1,10 @@
-// jev-codes precision eval runner (P9).
+// jev-codes precision eval runner.
 //
 // Runs every case in cases.json against the real Jev scorer with the bundled
 // `core` pack, no cache, and scores findings vs expected_flags per the README:
 //   TP = finding in expected_flags, FP = finding not in it,
 //   FN = expected_flag with no finding. Match key = (file, question).
-// `uncertain` counts as neither. PRD gate: >=80% precision on `high`.
+// `uncertain` counts as neither. Target: >=80% precision on `high`.
 //
 // Patches are `git diff -U20` but live outside a repo, so context comes from
 // the patch's own ` `-lines: leading context -> context_before, trailing ->

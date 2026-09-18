@@ -72,7 +72,7 @@ Packs are YAML — the only thing that defines "good code"; the CLI has no opini
 
 `jev-codes-eval/` holds 15 hand-labeled diffs plus a runner (`node jev-codes-eval/run.mjs`) against live Jev. Latest result on `jev-1.13.0` (17 calls, ~8s, $0.0006):
 
-* **HIGH gate: 6/6 → precision 1.000** (PRD bar: ≥0.80, floor 0.70)
+* **HIGH gate: 6/6 → precision 1.000** (target ≥0.80)
 * Overall precision 1.000, recall 0.909 — single miss is case 04 (`duplicate_logic`), a model-discrimination limit, not a tunable threshold
 * Labels (`change_kind`): 14/17
 
@@ -80,7 +80,7 @@ That run is what tuned `leftover_debug` 0.70 → 0.75 (killed the only false pos
 
 ## About Jev
 
-Jev is TypeSafe's System One model: you send `state` + typed `questions`, you get structured answers back — no text generation, no parsing. Three primitives, mixed in one call: `noul` (yes/no probability), `score` (position on your ordered levels), `choice` (one of ≤255 options + confidence). Every question is evaluated in parallel against the same state, so a tenth question costs tokens but almost no time. Model alias is `jev-latest`; reports always record the concrete `response_model`. Crisp notes live in `docs/jev.md`.
+Jev is TypeSafe's System One model: you send `state` + typed `questions`, you get structured answers back — no text generation, no parsing. Three primitives, mixed in one call: `noul` (yes/no probability), `score` (position on your ordered levels), `choice` (one of ≤255 options + confidence). Every question is evaluated in parallel against the same state, so a tenth question costs tokens but almost no time. Model alias is `jev-latest`; reports always record the concrete `response_model`. Reference notes live in `docs/jev.md`.
 
 ## Data path & telemetry
 
