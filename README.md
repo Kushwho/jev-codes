@@ -21,7 +21,7 @@ A 500-line diff audits in seconds for a fraction of a cent: one parallel Jev cal
 npx @kushwho/jev-codes
 ```
 
-With no arguments it onboards inline: asks for your TypeSafe key, validates it, saves it to `~/.jev-codes/config.json` (mode 600), and offers the Claude Code plugin install. Or be explicit:
+With no arguments it onboards inline: asks for your TypeSafe key, validates it, saves it to `~/.jev-codes/config.json` (mode 600), and offers the plugin install to supported harnesses. Or be explicit:
 
 ```sh
 npx @kushwho/jev-codes init [--key <k>] [--no-plugin]
